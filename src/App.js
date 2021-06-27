@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import './App.css';
 import Navbar from './components/layouts/Navbar';
-import UserItem from './components/users/UserItem';
+import Users from './components/users/Users';
 
 class App extends Component {
   foo = () => {
@@ -14,7 +14,9 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <UserItem />
+        <div className="container">
+          <Users />
+        </div>
       </div>
     );
   }
