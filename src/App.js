@@ -1,5 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import './App.css';
+import Navbar from './components/layouts/Navbar';
+import UserItem from './components/users/UserItem';
 
 class App extends Component {
   foo = () => {
@@ -11,8 +13,8 @@ class App extends Component {
     const showName = false;
     return (
       <div className="App">
-        <h1>Hello {this.foo()}</h1>
-        <h2>{showName && name}</h2>
+        <Navbar />
+        <UserItem />
       </div>
     );
   }
