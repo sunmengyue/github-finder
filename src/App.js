@@ -1,21 +1,27 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/layouts/Navbar';
 import Users from './components/users/Users';
+import axios from 'axios';
 
 class App extends Component {
-  foo = () => {
-    return 'bar';
+  state = {
+    loading: false,
+    users: [],
   };
 
+  async componentDidMount() {
+    this.setState({ loading: true });
+    const res = await axios.get('https://api.github.com/users');
+    this.setState({ users: res.data, loading: false });
+  }
+
   render() {
-    const name = 'Jone Doe';
-    const showName = false;
     return (
       <div className="App">
         <Navbar />
         <div className="container">
-          <Users />
+          <Users users={this.state.users} loading={this.state.loading} />
         </div>
       </div>
     );
