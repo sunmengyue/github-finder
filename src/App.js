@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/layouts/Navbar';
 import Search from './components/layouts/Search';
+import Alert from './components/layouts/Alert';
 import Users from './components/users/Users';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 class App extends Component {
   state = {
     loading: false,
     users: [],
-  };
-
-  static propTypes = {
-    searchUsers: PropTypes.func.isRequired,
-    clearUsers: PropTypes.func.isRequired,
-    showClear: PropTypes.bool.isRequired,
+    alert: null,
   };
 
   // async componentDidMount() {
@@ -39,6 +34,10 @@ class App extends Component {
     this.setState({ users: [], loading: false });
   };
 
+  setAlert = (erroMsg, color) => {
+    this.setState({ alert: { msg: erroMsg, type: color } });
+    setTimeout(() => this.setState({ alert: null }), 5000);
+  };
   render() {
     const { users, loading } = this.state;
 
@@ -46,10 +45,12 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <div className="container">
+          <Alert alert={this.state.alert} />
           <Search
             searchUsers={this.searchUsers}
             clearUsers={this.clearUsers}
             showClear={users.length > 0 ? true : false}
+            setAlert={this.setAlert}
           />
           <Users users={users} loading={loading} />
         </div>
