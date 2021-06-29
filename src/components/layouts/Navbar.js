@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ icon, title }) => {
   // static defaultProps: even if there is nothing passed down from app.js
@@ -10,6 +11,14 @@ const Navbar = ({ icon, title }) => {
           <i className={icon} style={{ marginRight: '10px' }}></i>
           {title}
         </h1>
+        <ul>
+          <li>
+            <Link to="/">home</Link>
+          </li>
+          <li>
+            <Link to="/about">about</Link>
+          </li>
+        </ul>
       </nav>
     </div>
   );
