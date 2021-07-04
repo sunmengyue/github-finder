@@ -2,8 +2,9 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import GithubContext from '../../context/github/githubContext';
 
-const Search = ({ setAlert, clearUsers, showClear }) => {
+const Search = ({ setAlert }) => {
   const githubContext = useContext(GithubContext);
+  const { clearUsers, users } = githubContext;
   const [text, setText] = useState('');
 
   const onChange = (e) => setText(e.target.value);
@@ -33,7 +34,7 @@ const Search = ({ setAlert, clearUsers, showClear }) => {
           className="btn btn-dark btn-block"
         />
       </form>
-      {showClear && (
+      {users.length > 0 && (
         <button className="btn btn-light btn-block" onClick={clearUsers}>
           Clear
         </button>
@@ -43,9 +44,7 @@ const Search = ({ setAlert, clearUsers, showClear }) => {
 };
 
 Search.propTypes = {
-  clearUsers: PropTypes.func.isRequired,
   setAlert: PropTypes.func.isRequired,
-  showClear: PropTypes.bool.isRequired,
 };
 
 export default Search;
