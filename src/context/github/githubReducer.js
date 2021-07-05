@@ -6,7 +6,7 @@ import {
   SET_LOADING,
 } from '../types';
 
-export default (state, action) => {
+const githubReducer = (state, action) => {
   switch (action.type) {
     case GET_REPOS:
       return { ...state, repos: action.payload, loading: false };
@@ -22,3 +22,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default githubReducer;
